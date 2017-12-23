@@ -81,16 +81,16 @@
 
 <meta name="description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="chenlijian&#39;s page">
+<meta property="og:title" content="Android动态加载so文件（解决so文件冲突）">
 <meta property="og:url" content="http://yoursite.com/2017/12/23/Android动态加载so文件（解决so文件冲突）/index.html">
 <meta property="og:site_name" content="chenlijian&#39;s page">
 <meta property="og:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-91e5f156f6923ffa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-23T11:02:13.554Z">
+<meta property="og:updated_time" content="2017-12-23T11:26:24.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chenlijian&#39;s page">
+<meta name="twitter:title" content="Android动态加载so文件（解决so文件冲突）">
 <meta name="twitter:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title> | chenlijian's page</title>
+  <title>Android动态加载so文件（解决so文件冲突） | chenlijian's page</title>
   
 
 
@@ -252,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Android动态加载so文件（解决so文件冲突）</h1>
         
 
         <div class="post-meta">
@@ -264,7 +264,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T19:01:16+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T19:23:34+08:00">
                 2017-12-23
               </time>
             
@@ -409,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/23/Handler、Looper、MessageQueue、HanlderThread的详细解读/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/23/Handler、Looper、MessageQueue、HanlderThread的详细解读/" rel="prev" title="Handler、Looper、MessageQueue、HanlderThread的详细解读">
+                Handler、Looper、MessageQueue、HanlderThread的详细解读 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -479,7 +479,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

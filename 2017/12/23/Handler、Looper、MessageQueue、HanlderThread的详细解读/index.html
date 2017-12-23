@@ -81,15 +81,15 @@
 
 <meta name="description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
 <meta property="og:type" content="article">
-<meta property="og:title" content="chenlijian&#39;s page">
+<meta property="og:title" content="Handler、Looper、MessageQueue、HanlderThread的详细解读">
 <meta property="og:url" content="http://yoursite.com/2017/12/23/Handler、Looper、MessageQueue、HanlderThread的详细解读/index.html">
 <meta property="og:site_name" content="chenlijian&#39;s page">
 <meta property="og:description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-5e2e101a0dc2e78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-23T11:05:04.367Z">
+<meta property="og:updated_time" content="2017-12-23T11:26:44.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chenlijian&#39;s page">
+<meta name="twitter:title" content="Handler、Looper、MessageQueue、HanlderThread的详细解读">
 <meta name="twitter:description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/163823-5e2e101a0dc2e78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -127,7 +127,7 @@
 
 
 
-  <title> | chenlijian's page</title>
+  <title>Handler、Looper、MessageQueue、HanlderThread的详细解读 | chenlijian's page</title>
   
 
 
@@ -251,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Handler、Looper、MessageQueue、HanlderThread的详细解读</h1>
         
 
         <div class="post-meta">
@@ -263,7 +263,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T19:04:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T19:24:34+08:00">
                 2017-12-23
               </time>
             
@@ -543,8 +543,8 @@ public void onDestroy() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/23/Android动态加载so文件（解决so文件冲突）/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/12/23/Android动态加载so文件（解决so文件冲突）/" rel="next" title="Android动态加载so文件（解决so文件冲突）">
+                <i class="fa fa-chevron-left"></i> Android动态加载so文件（解决so文件冲突）
               </a>
             
           </div>
@@ -552,10 +552,6 @@ public void onDestroy() {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/23/test/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -632,7 +628,7 @@ public void onDestroy() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
