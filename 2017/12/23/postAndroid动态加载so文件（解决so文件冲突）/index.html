@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
+<meta property="og:type" content="article">
 <meta property="og:title" content="chenlijian&#39;s page">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/12/23/postAndroid动态加载so文件（解决so文件冲突）/index.html">
 <meta property="og:site_name" content="chenlijian&#39;s page">
+<meta property="og:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-91e5f156f6923ffa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-23T11:21:42.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chenlijian&#39;s page">
+<meta name="twitter:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/23/postAndroid动态加载so文件（解决so文件冲突）/"/>
 
 
 
 
 
-  <title>chenlijian's page</title>
+  <title> | chenlijian's page</title>
   
 
 
@@ -140,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +220,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/postAndroid动态加载so文件（解决so文件冲突）/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -298,9 +302,7 @@
       
 
       
-        
-          
-            <p>在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。<br>那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？<br>比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到动态加载的方法。</p>
+        <p>在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。<br>那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？<br>比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到动态加载的方法。</p>
 <hr>
 <p>这是原先的静态加载方法，将所有依赖库的so文件全部一股脑的放进armeabi文件夹即可。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="静态加载"></p>
@@ -378,8 +380,6 @@
 </code></pre><hr>
 <p>当然，上面这个方法是将so文件放在程序的assets文件夹。另一种方法是：也可以从网络上下载，放入本地数据目录下。这样的好处是不仅减小的了apk的大小，而且可以随时使用最新的依赖库，这也是动态加载的最多得用途之一。</p>
 
-          
-        
       
     </div>
     
@@ -396,12 +396,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -411,10 +411,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -422,6 +423,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -627,6 +632,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
