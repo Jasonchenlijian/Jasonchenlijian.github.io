@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler、Looper、MessageQueue、HanlderThread的详细解读">
 <meta property="og:url" content="http://yoursite.com/2017/12/23/Handler、Looper、MessageQueue、HanlderThread的详细解读/index.html">
@@ -87,7 +88,7 @@
 <meta property="og:description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-5e2e101a0dc2e78c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-23T11:26:44.160Z">
+<meta property="og:updated_time" content="2017-12-23T12:15:03.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler、Looper、MessageQueue、HanlderThread的详细解读">
 <meta name="twitter:description" content="1.  创建Handler对象需要Looper：在主线程中可以直接创建Handler对象，而在子线程中需要先调用Looper.prepare()才能创建Handler对象。看源码：Handler的无参构造函数中有这样一个判断：  mLooper = Looper.myLooper();        if (mLooper == null) {            throw new Runti">
@@ -529,10 +530,45 @@ public void onDestroy() {
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jasonchenlijian 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Jasonchenlijian 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -637,6 +673,15 @@ public void onDestroy() {
             
 
             
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
 
           </nav>
 
@@ -655,6 +700,12 @@ public void onDestroy() {
                   <a href="mailto:jasonchenlijian@gmail.com" target="_blank" title="E-Mail">
                     
                       <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/03be02d3e424" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-globe"></i>简书</a>
                 </span>
               
             
@@ -766,6 +817,8 @@ public void onDestroy() {
   
 
 
+  
+
 
 
 
@@ -804,6 +857,11 @@ public void onDestroy() {
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
