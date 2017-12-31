@@ -229,6 +229,182 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/31/CentOS7安装GitLab的过程详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jasonchenlijian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenlijian's page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/31/CentOS7安装GitLab的过程详解/" itemprop="url">CentOS7安装GitLab的过程详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-31T15:25:00+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>接上一篇<a href="http://chenlijian.com/2017/12/26/win10%E9%80%9A%E8%BF%87ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Gitlab%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">win10通过ubuntu虚拟机安装Gitlab的过程详解</a>，从作为日常开发的服务器平台的角度，虚拟机毕竟性能有限，所以这次搞了一台闲置的PC，给它装上CentOS，然后在其上搭建Gitlab。</p>
+<p>我们依然选择困难模式来讲解整个过程:<br>假如你使用的是一台Win10电脑，并且从没接触过Linux、Gitlab，那就可以按照下面的步骤一步步来配置。如果你熟悉其中部分过程或者拥有部分配置，可以选择性地跳过它们。</p>
+<p><strong>简单来说分为以下几个步骤：</strong></p>
+<ol>
+<li>U盘安装CentOS7</li>
+<li>安装Gitlab</li>
+<li>配置Gitlab</li>
+</ol>
+<hr>
+<h3 id="U盘安装CentOS7"><a href="#U盘安装CentOS7" class="headerlink" title="U盘安装CentOS7"></a>U盘安装CentOS7</h3><ol>
+<li>下载CentOS7镜像文件： <a href="https://www.centos.org/download" target="_blank" rel="noopener">https://www.centos.org/download</a><br><img src="http://upload-images.jianshu.io/upload_images/163823-d7cae985af46885c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载CentOS7镜像文件.png"></li>
+<li>下载映像文件制作工具：推荐使用UltraISO</li>
+<li>准备一个至少8G容量以上的U盘</li>
+<li>将CentOS-7.0镜像通过UltraISO写入到到U盘内</li>
+<li>重启PC，在BIOS中将启动顺序改为U盘启动，退出重启，系统会自动进入到CentOS安装步骤，选择“Install CentOS 7”</li>
+<li>后续的安装过程及图示可以参考这篇文章： <a href="http://www.osyunwei.com/archives/7829.html。尤其是要注意的是：CentOS模式是最小安装，即没有图形界面。假如需求图形界面，请确保在安装的时候选择GNOME，这样安装好后就有图形界面。" target="_blank" rel="noopener">http://www.osyunwei.com/archives/7829.html。尤其是要注意的是：CentOS模式是最小安装，即没有图形界面。假如需求图形界面，请确保在安装的时候选择GNOME，这样安装好后就有图形界面。</a></li>
+<li><p>假如当前是最小化安装没有图形界面，或者当前默认进入了命令行界面，想切换回图形界面该如何操作呢？那就通过yum命令来安装gnome包。 然后重启便进入了GUI界面。</p>
+<pre><code># yum groupinstall &quot;GNOME Desktop&quot; &quot;Graphical Administration Tools&quot;
+
+# ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
+
+# reboot
+</code></pre></li>
+</ol>
+<h3 id="安装Gitlab"><a href="#安装Gitlab" class="headerlink" title="安装Gitlab"></a>安装Gitlab</h3><ol>
+<li>在CentOS系统上，下面的命令将会打开系统防火墙HTTP和SSH访问。</li>
+</ol>
+<pre><code>sudo yum install curl policycoreutils openssh-server openssh-clients
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo yum install postfix
+sudo systemctl enable postfix
+sudo systemctl start postfix
+sudo firewall-cmd --permanent --add-service=http
+sudo systemctl reload firewalld 
+</code></pre><ol>
+<li><p>添加GitLab镜像源并安装</p>
+<p>   curl -sS <a href="http://packages.gitlab.com.cn/install/gitlab-ce/script.rpm.sh" target="_blank" rel="noopener">http://packages.gitlab.com.cn/install/gitlab-ce/script.rpm.sh</a> | sudo bash</p>
+</li>
+</ol>
+<p>这是官方的yum源，安装速度会比较慢，可以使用国内源，修改如下文件即可：</p>
+<pre><code>vim /etc/yum.repos.d/gitlab_gitlab-ce.repo
+</code></pre><p>修改内容如下：</p>
+<pre><code>[gitlab-ce]
+name=gitlab-ce
+baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+gpgkey=https://packages.gitlab.com/gpg.key
+</code></pre><p>然后执行安装命令：</p>
+<pre><code>sudo yum install gitlab-ce
+</code></pre><ol>
+<li><p>配置并启动 GitLab，配置IP的过程请参考上一篇文章。</p>
+<pre><code>sudo gitlab-ctl reconfigure
+</code></pre></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/26/win10通过ubuntu虚拟机安装Gitlab的过程详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1011,7 +1187,7 @@ public void onDestroy() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
