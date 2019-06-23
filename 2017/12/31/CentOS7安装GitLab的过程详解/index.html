@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Gitlab," />
 
 
 
@@ -79,21 +79,20 @@
 
 
 
-<meta name="description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
-<meta name="keywords" content="Android">
+<meta name="description" content="接上一篇win10通过ubuntu虚拟机安装Gitlab的过程详解，从作为日常开发的服务器平台的角度，虚拟机毕竟性能有限，所以这次搞了一台闲置的PC，给它装上CentOS，然后在其上搭建Gitlab。 我们依然选择困难模式来讲解整个过程:假如你使用的是一台Win10电脑，并且从没接触过Linux、Gitlab，那就可以按照下面的步骤一步步来配置。如果你熟悉其中部分过程或者拥有部分配置，可以选择性地">
+<meta name="keywords" content="Gitlab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android动态加载so文件（解决so文件冲突）">
-<meta property="og:url" content="http://yoursite.com/2017/12/23/Android动态加载so文件（解决so文件冲突）/index.html">
+<meta property="og:title" content="CentOS7安装GitLab的过程详解">
+<meta property="og:url" content="http://yoursite.com/2017/12/31/CentOS7安装GitLab的过程详解/index.html">
 <meta property="og:site_name" content="chenlijian&#39;s page">
-<meta property="og:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
+<meta property="og:description" content="接上一篇win10通过ubuntu虚拟机安装Gitlab的过程详解，从作为日常开发的服务器平台的角度，虚拟机毕竟性能有限，所以这次搞了一台闲置的PC，给它装上CentOS，然后在其上搭建Gitlab。 我们依然选择困难模式来讲解整个过程:假如你使用的是一台Win10电脑，并且从没接触过Linux、Gitlab，那就可以按照下面的步骤一步步来配置。如果你熟悉其中部分过程或者拥有部分配置，可以选择性地">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-91e5f156f6923ffa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-23T12:14:54.008Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/163823-d7cae985af46885c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-31T07:35:23.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android动态加载so文件（解决so文件冲突）">
-<meta name="twitter:description" content="在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="CentOS7安装GitLab的过程详解">
+<meta name="twitter:description" content="接上一篇win10通过ubuntu虚拟机安装Gitlab的过程详解，从作为日常开发的服务器平台的角度，虚拟机毕竟性能有限，所以这次搞了一台闲置的PC，给它装上CentOS，然后在其上搭建Gitlab。 我们依然选择困难模式来讲解整个过程:假如你使用的是一台Win10电脑，并且从没接触过Linux、Gitlab，那就可以按照下面的步骤一步步来配置。如果你熟悉其中部分过程或者拥有部分配置，可以选择性地">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/163823-d7cae985af46885c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/23/Android动态加载so文件（解决so文件冲突）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/31/CentOS7安装GitLab的过程详解/"/>
 
 
 
 
 
-  <title>Android动态加载so文件（解决so文件冲突） | chenlijian's page</title>
+  <title>CentOS7安装GitLab的过程详解 | chenlijian's page</title>
   
 
 
@@ -236,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/Android动态加载so文件（解决so文件冲突）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/31/CentOS7安装GitLab的过程详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jasonchenlijian">
@@ -253,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android动态加载so文件（解决so文件冲突）</h1>
+          <h1 class="post-title" itemprop="name headline">CentOS7安装GitLab的过程详解</h1>
         
 
         <div class="post-meta">
@@ -265,8 +264,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T19:23:34+08:00">
-                2017-12-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-31T15:25:00+08:00">
+                2017-12-31
               </time>
             
 
@@ -303,83 +302,64 @@
       
 
       
-        <p>在开发过程中，经常会用到第三方库，比如地图、视频、文档编辑、图表之类。依赖这些库，需要添加其SDK，有时需要用到jni层的So文件，比如百度地图等。<br>那么问题来了，如果两个不同的库之间的so文件发生冲突这么办？<br>比如：单独添加地图的库，运行没有问题。单独添加一个视频库，运行没有问题。但两者同时添加，其中一个库在init的时候报错。这当然和第三方库的开发水平有很大关系，但我们怎么解决这个问题呢？这就用到动态加载的方法。</p>
+        <p>接上一篇<a href="http://chenlijian.com/2017/12/26/win10%E9%80%9A%E8%BF%87ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Gitlab%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">win10通过ubuntu虚拟机安装Gitlab的过程详解</a>，从作为日常开发的服务器平台的角度，虚拟机毕竟性能有限，所以这次搞了一台闲置的PC，给它装上CentOS，然后在其上搭建Gitlab。</p>
+<p>我们依然选择困难模式来讲解整个过程:<br>假如你使用的是一台Win10电脑，并且从没接触过Linux、Gitlab，那就可以按照下面的步骤一步步来配置。如果你熟悉其中部分过程或者拥有部分配置，可以选择性地跳过它们。</p>
+<p><strong>简单来说分为以下几个步骤：</strong></p>
+<ol>
+<li>U盘安装CentOS7</li>
+<li>安装Gitlab</li>
+<li>配置Gitlab</li>
+</ol>
 <hr>
-<p>这是原先的静态加载方法，将所有依赖库的so文件全部一股脑的放进armeabi文件夹即可。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/163823-e559850aa01749f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="静态加载"></p>
-<p>动态加载的方法，我将冲突的so文件放在assets文件夹中</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/163823-91e5f156f6923ffa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="动态加载"></p>
-<p>这里需要注意的是：动态加载so的文件只能放在两个地方：1. lib文件夹中，即对应Android Studio中的jniLibs文件夹。2. 本地data/data/package数据目录下。 所以，当应用第一次启动的时候，必须将我们放在assets文件夹中的so文件拷贝乳本地数据目录下。</p>
-<pre><code> //每次进入app，遍历assets目录下所有的文件，是否在data/data目录下都已经存在，不存在则拷贝
- private void initAssetsFile() {
+<h3 id="U盘安装CentOS7"><a href="#U盘安装CentOS7" class="headerlink" title="U盘安装CentOS7"></a>U盘安装CentOS7</h3><ol>
+<li>下载CentOS7镜像文件： <a href="https://www.centos.org/download" target="_blank" rel="noopener">https://www.centos.org/download</a><br><img src="http://upload-images.jianshu.io/upload_images/163823-d7cae985af46885c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载CentOS7镜像文件.png"></li>
+<li>下载映像文件制作工具：推荐使用UltraISO</li>
+<li>准备一个至少8G容量以上的U盘</li>
+<li>将CentOS-7.0镜像通过UltraISO写入到到U盘内</li>
+<li>重启PC，在BIOS中将启动顺序改为U盘启动，退出重启，系统会自动进入到CentOS安装步骤，选择“Install CentOS 7”</li>
+<li>后续的安装过程及图示可以参考这篇文章： <a href="http://www.osyunwei.com/archives/7829.html。" target="_blank" rel="noopener">http://www.osyunwei.com/archives/7829.html。</a></li>
+<li>尤其是要注意的是：CentOS模式是最小安装，即没有图形界面。假如需求图形界面，请确保在安装的时候选择GNOME，这样安装好后就有图形界面。</li>
+<li><p>假如当前是最小化安装没有图形界面，或者当前默认进入了命令行界面，想切换回图形界面该如何操作呢？那就通过yum命令来安装gnome包。 然后重启便进入了GUI界面。</p>
+<pre><code># yum groupinstall &quot;GNOME Desktop&quot; &quot;Graphical Administration Tools&quot;
 
-      boolean needCopy = false;
+# ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
 
-      // 创建data/data目录
-      File file = getApplicationContext().getFilesDir();
-      String path = file.toString() + &quot;/armeabi/&quot;;
-
-      // 遍历assets目录下所有的文件，是否在data/data目录下都已经存在
-      try {
-          String[] fileNames = getApplicationContext().getAssets().list(&quot;armeabi&quot;);
-          for (int i = 0; fileNames != null &amp;&amp; i &lt; fileNames.length; i++) {
-              if (!TFileUtils.isFileExit(path + fileNames[i])) {
-                  needCopy = true;
-                  break;
-              }
-          }
-
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-
-      if (needCopy) {
-          CommonUtils.copyFilesFassets(getApplicationContext(), &quot;armeabi&quot;, path);
-      }
-  }
-
-  //将旧目录中的文件全部复制到新目录
-  public static void copyFilesFassets(Context context, String oldPath, String newPath) {
-      try {
-
-          // 获取assets目录下的所有文件及目录名
-          String fileNames[] = context.getAssets().list(oldPath);
-
-          // 如果是目录名，则将重复调用方法递归地将所有文件
-          if (fileNames.length &gt; 0) {
-              File file = new File(newPath);
-              file.mkdirs();
-              for (String fileName : fileNames) {
-                  copyFilesFassets(context, oldPath + &quot;/&quot; + fileName, newPath + &quot;/&quot; + fileName);
-              }
-          }
-          // 如果是文件，则循环从输入流读取字节写入
-          else {
-              InputStream is = context.getAssets().open(oldPath);
-              FileOutputStream fos = new FileOutputStream(new File(newPath));
-              byte[] buffer = new byte[1024];
-              int byteCount = 0;
-              while ((byteCount = is.read(buffer)) != -1) {
-                  fos.write(buffer, 0, byteCount);
-              }
-              fos.flush();
-              is.close();
-              fos.close();
-          }
-      } catch (Exception e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-      }
-  }
-
- //在需要初始化SDK的地方，指定so文件的路径
- private void initAPI() {   
-      File file = getApplicationContext().getFilesDir();
-      String path = file.toString() + &quot;/armeabi/&quot;; 
-      EzvizAPI.init(getApplication(), key, path);
-}
-</code></pre><hr>
-<p>当然，上面这个方法是将so文件放在程序的assets文件夹。另一种方法是：也可以从网络上下载，放入本地数据目录下。这样的好处是不仅减小的了apk的大小，而且可以随时使用最新的依赖库，这也是动态加载的最多得用途之一。</p>
+# reboot
+</code></pre></li>
+</ol>
+<h3 id="安装Gitlab"><a href="#安装Gitlab" class="headerlink" title="安装Gitlab"></a>安装Gitlab</h3><ol>
+<li>在CentOS系统上，下面的命令将会打开系统防火墙HTTP和SSH访问。</li>
+</ol>
+<pre><code>sudo yum install curl policycoreutils openssh-server openssh-clients
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo yum install postfix
+sudo systemctl enable postfix
+sudo systemctl start postfix
+sudo firewall-cmd --permanent --add-service=http
+sudo systemctl reload firewalld 
+</code></pre><ol>
+<li><p>添加GitLab镜像源并安装</p>
+<p>   curl -sS <a href="http://packages.gitlab.com.cn/install/gitlab-ce/script.rpm.sh" target="_blank" rel="noopener">http://packages.gitlab.com.cn/install/gitlab-ce/script.rpm.sh</a> | sudo bash</p>
+</li>
+</ol>
+<p>这是官方的yum源，安装速度会比较慢，可以使用国内源，修改如下文件即可：</p>
+<pre><code>vim /etc/yum.repos.d/gitlab_gitlab-ce.repo
+</code></pre><p>修改内容如下：</p>
+<pre><code>[gitlab-ce]
+name=gitlab-ce
+baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+gpgkey=https://packages.gitlab.com/gpg.key
+</code></pre><p>然后执行安装命令：</p>
+<pre><code>sudo yum install gitlab-ce
+</code></pre><ol>
+<li><p>配置并启动 GitLab，配置IP的过程请参考上一篇文章。</p>
+<pre><code>sudo gitlab-ctl reconfigure
+</code></pre></li>
+</ol>
 
       
     </div>
@@ -426,7 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Gitlab/" rel="tag"># Gitlab</a>
           
         </div>
       
@@ -439,15 +419,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/26/win10通过ubuntu虚拟机安装Gitlab的过程详解/" rel="next" title="win10通过ubuntu虚拟机安装Gitlab的过程详解">
+                <i class="fa fa-chevron-left"></i> win10通过ubuntu虚拟机安装Gitlab的过程详解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/23/Handler、Looper、MessageQueue、HanlderThread的详细解读/" rel="prev" title="Handler、Looper、MessageQueue、HanlderThread的详细解读">
-                Handler、Looper、MessageQueue、HanlderThread的详细解读 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -499,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -573,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#U盘安装CentOS7"><span class="nav-number">1.</span> <span class="nav-text">U盘安装CentOS7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Gitlab"><span class="nav-number">2.</span> <span class="nav-text">安装Gitlab</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
